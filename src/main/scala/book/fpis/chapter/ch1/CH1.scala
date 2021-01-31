@@ -14,7 +14,7 @@ import scala.annotation.tailrec
   * @author loustler
   * @since 10/03/2016 15:44
   */
-object OneChapter {
+object CH1 {
 
   /**
     * 다형성 적용 전

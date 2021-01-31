@@ -275,7 +275,7 @@ object CH3_Exercise {
   
   
   object Tree {
-    
+    // leaf is return 1, branch is return 1 + recursive size
     // ex 3.25
     def size[A](t: Tree[A]):Int = t match {
       case Leaf(v) => 1
@@ -305,6 +305,7 @@ object CH3_Exercise {
       case Leaf(v) => f(v)
       case Branch(l,r) => g( fold(l)(f)(g), fold(r)(f)(g) )
     }
+
   }
 
 
