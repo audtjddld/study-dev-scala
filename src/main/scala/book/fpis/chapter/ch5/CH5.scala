@@ -138,8 +138,8 @@ object CH5 {
   trait Stream[+A] {
 
     // ex 5.1
-    def toList: two.List[A] = this match {
-      case Empty => two.List()
+    def toList: List[A] = this match {
+      case Empty => List()
       case Cons(h, t) => h() :: t().toList
     }
 
@@ -164,6 +164,8 @@ object CH5 {
       case Cons(h, t) if n > 0 => cons(h(), t().take(n - 1))
       case _ => Empty
     }
+
+    def take2(n: Int): Stream[A] = if (n == 1) Cons()
 
     def drop(n: Int): Stream[A] = this match {
       case Cons(h, t) => if (n > 0) t().drop(n - 1) else this
@@ -274,7 +276,9 @@ object CH5 {
   case class Cons[+A](h: () => A, t: () => Stream[A]) extends Stream[A]
 
   object Stream {
-
+    def main(args: Array[String]): Unit = {
+      println(Stream(1,2,3,4).map(_ + 10).filter(_ % 2))
+    }
     // thunk 를 한번만 평가하기 위한 smart 생성자
     def cons[A](hd: => A, tl: => Stream[A]): Stream[A] = {
       lazy val head = hd
@@ -329,5 +333,6 @@ object CH5 {
     def onse2: Stream[Int] =
       unfold(1)(a => Some((a, a)))
   }
+
 
 }
